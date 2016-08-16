@@ -1,0 +1,20 @@
+{
+  "name": "venmo-slack-logger",
+  "version": "1.0.0",
+  "description": "Logs venmo transactions to slack",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaska/venmo-slack-logger.git"
+  },
+  "author": "Arlan Jaska",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ajaska/venmo-slack-logger/issues"
+  },
+  "homepage": "https://github.com/ajaska/venmo-slack-logger#readme"
+}
