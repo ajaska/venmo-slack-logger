@@ -1,9 +1,11 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const morgan = require('morgan');
 const rp =  require('request-promise');
 
 const app = express();
 
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
@@ -17,6 +19,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   if (req.body && req.body.data) {
     messageSlack('Got a message!');
+    messageSlack(JSON.stringify(req.body.data, null, 2));
     res.type('text').send('ok');
   } else {
     res.sendStatus(400);
