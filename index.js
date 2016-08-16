@@ -1,14 +1,25 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const rp =  require('request-promise');
 
 const app = express();
 
+app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
   if (req.query.venmo_challenge) {
-		res.set('Content-Type', 'text/plain');
-    res.send(req.query.venmo_challenge);
+    res.type('text').send(req.query.venmo_challenge);
   } else {
-    res.status(400).send('Bad Request');
+    res.sendStatus(400);
+  }
+});
+
+app.post('/', (req, res) => {
+  if (req.body && req.body.data) {
+    messageSlack('Got a message!');
+    res.type('text').send('ok');
+  } else {
+    res.sendStatus(400);
   }
 });
 
