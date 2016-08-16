@@ -46,7 +46,7 @@ function messageSlack({ text, attachment }) {
     uri: process.env.SLACK_WEBHOOK_URL,
     body: {
       text,
-      attachments: [attachment],
+      attachments: attachment && [attachment],
     },
     json: true,
   };
