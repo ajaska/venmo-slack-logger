@@ -1,6 +1,6 @@
 const templates = {
   charged: (data) => ({
-    color: "warning",
+    color: 'warning',
     author_name: data.actor.display_name,
     author_icon: data.actor.profile_picture_url,
     thumb_url: data.target.user.profile_picture_url,
@@ -9,7 +9,7 @@ const templates = {
     ts: Date.parse(data.date_created),
   }),
   cancelled: (data) => ({
-    color: "danger",
+    color: 'danger',
     author_name: data.actor.display_name,
     author_icon: data.actor.profile_picture_url,
     thumb_url: data.target.user.profile_picture_url,
@@ -18,7 +18,7 @@ const templates = {
     ts: Date.parse(data.date_completed),
   }),
   paid: (data) => ({
-    color: "good",
+    color: 'good',
     author_name: data.actor.display_name,
     author_icon: data.actor.profile_picture_url,
     thumb_url: data.target.user.profile_picture_url,

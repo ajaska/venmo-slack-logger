@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
-const rp =  require('request-promise');
+const rp = require('request-promise');
 
 const templates = require('./templates');
 
@@ -22,11 +22,11 @@ app.post('/', (req, res) => {
   if (req.body && req.body.data) {
     const data = req.body.data;
     if (data.action === 'pay' && data.status === 'settled') {
-      messageSlack({attachments: templates.paid(data)});
-    } else if (data.action ==='charge' && data.status === 'pending') {
-      messageSlack({attachments: templates.charged(data)});
-    } else if (data.action ==='charge' && data.status === 'cancelled') {
-      messageSlack({attachments: templates.cancelled(data)});
+      messageSlack({ attachments: templates.paid(data) });
+    } else if (data.action === 'charge' && data.status === 'pending') {
+      messageSlack({ attachments: templates.charged(data) });
+    } else if (data.action === 'charge' && data.status === 'cancelled') {
+      messageSlack({ attachments: templates.cancelled(data) });
     } else {
       messageSlack(JSON.stringify(req.body.data, null, 2));
     }
@@ -40,7 +40,7 @@ app.listen(3000, () => {
   console.log('Starting up!');
 });
 
-function messageSlack({text, attachments}) {
+function messageSlack({ text, attachments }) {
   const options = {
     method: 'POST',
     uri: process.env.SLACK_WEBHOOK_URL,
@@ -52,5 +52,5 @@ function messageSlack({text, attachments}) {
   };
 
   rp(options)
-    .catch(err => console.error(err))
+    .catch(err => console.error(err));
 }
