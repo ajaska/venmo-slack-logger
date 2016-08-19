@@ -28,7 +28,7 @@ app.post('/', (req, res) => {
     } else if (data.action === 'charge' && data.status === 'cancelled') {
       messageSlack({ attachment: templates.cancelled(data) });
     } else {
-      messageSlack(JSON.stringify(req.body.data, null, 2));
+      messageSlack({ text: JSON.stringify(req.body.data, null, 2) });
     }
     res.type('text').send('ok');
   } else {
