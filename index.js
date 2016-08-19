@@ -1,9 +1,9 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
-const rp = require('request-promise');
 
 const templates = require('./templates');
+const messageSlack = require('./slack');
 
 const app = express();
 
@@ -37,18 +37,3 @@ app.post('/', (req, res) => {
 app.listen(3000, () => {
   console.log('Starting up!');
 });
-
-function messageSlack({ text, attachment }) {
-  const options = {
-    method: 'POST',
-    uri: process.env.SLACK_WEBHOOK_URL,
-    body: {
-      text,
-      attachments: attachment && [attachment],
-    },
-    json: true,
-  };
-
-  rp(options)
-    .catch(err => console.error(err));
-}

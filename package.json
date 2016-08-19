@@ -18,7 +18,7 @@
     "eslint-plugin-react": "^6.1.1"
   },
   "scripts": {
-    "lint": "eslint ./index.js ./templates.js; exit 0"
+    "lint": "eslint ./*.js; exit 0"
   },
   "repository": {
     "type": "git",
