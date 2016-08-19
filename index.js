@@ -21,12 +21,10 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   if (req.body && req.body.data) {
     const data = req.body.data;
-    if (data.action === 'pay' && data.status === 'settled') {
-      messageSlack({ attachment: templates.paid(data) });
-    } else if (data.action === 'charge' && data.status === 'pending') {
-      messageSlack({ attachment: templates.charged(data) });
-    } else if (data.action === 'charge' && data.status === 'cancelled') {
-      messageSlack({ attachment: templates.cancelled(data) });
+    if ({}.hasOwnProperty.call(templates, data.action) &&
+        {}.hasOwnProperty.call(templates[data.action], data.status)) {
+      const attachment = templates[data.action][data.status](data);
+      messageSlack({ attachment });
     } else {
       messageSlack({ text: JSON.stringify(req.body.data, null, 2) });
     }
